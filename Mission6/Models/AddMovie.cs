@@ -15,7 +15,7 @@ namespace Mission6.Models
         string Title;
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Year is required")]
-        int Year;
+        string Year;
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Director is required")]
         string Director;
