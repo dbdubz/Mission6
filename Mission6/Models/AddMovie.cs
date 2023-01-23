@@ -24,6 +24,9 @@ namespace Mission6.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Director is required")]
         public string Director { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Rating is required")]
+        public string Rating { get; set; }
+
         public bool Edited { get; set; }
 
         public string LentTo { get; set; }
