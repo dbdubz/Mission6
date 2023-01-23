@@ -8,23 +8,27 @@ namespace Mission6.Models
 {
     public class AddMovie
     {
+        [Key]
+        [Required]
+        public int Id { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Category is required")]
-        public string Category;
+        public string Category { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Title is required")]
-        public string Title;
+        public string Title { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Year is required")]
-        public string Year;
+        public string Year { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Director is required")]
-        public string Director;
+        public string Director { get; set; }
 
-        public bool Edited;
+        public bool Edited { get; set; }
 
-        public string LentTo;
+        public string LentTo { get; set; }
 
         [StringLength(25)]
-        public string Notes;
+        public string Notes { get; set; }
     }
 }
