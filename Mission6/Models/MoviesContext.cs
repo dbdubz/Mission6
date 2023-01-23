@@ -14,5 +14,15 @@ namespace Mission6.Models
         }
 
         public DbSet<AddMovie> addMovies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AddMovie>().HasData(
+                    new AddMovie
+                    {
+
+                    }
+            );
+        }
     }
 }
