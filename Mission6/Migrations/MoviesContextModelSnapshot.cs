@@ -39,6 +39,10 @@ namespace Mission6.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(25);
 
+                    b.Property<string>("Rating")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
