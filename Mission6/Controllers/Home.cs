@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace Mission6.Controllers
 {
-    public class HomeController : Controller
+    public class Home : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<Home> _logger;
+        private MoviesContext _moviesContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public Home(ILogger<Home> logger, MoviesContext moviesContext)
         {
             _logger = logger;
+            _moviesContext = moviesContext;
         }
 
         public IActionResult Index()
@@ -34,6 +36,8 @@ namespace Mission6.Controllers
         {
             if (ModelState.IsValid)
             {
+                _moviesContext.Add(Movie);
+                _moviesContext.SaveChanges();
                 return RedirectToAction("AddMovie");
             }
             else

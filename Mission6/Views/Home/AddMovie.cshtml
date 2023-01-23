@@ -8,7 +8,7 @@
     <br />
 </div>
 <div>
-    <form name="add" id="add" asp-controller="HomeController" asp-action="AddMovie" method="post">
+    <form name="add" id="add" asp-controller="Home" asp-action="AddMovie" method="post">
         <label for="Category" asp-for="Category">Category</label>
         <input type="text" name="Category" id="Category" list="Categories" asp-for="Category" />
         <datalist name="Categories" id="Categories">
