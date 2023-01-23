@@ -7,9 +7,10 @@
     <br />
 </div>
 <div>
-    <form name="add" id="add">
+    <form name="add" id="add" asp-controller="HomeController" asp-action="AddMovie" method="post">
         <label for="Category">Category</label>
-        <select name="Category" id="Category">
+        <input type="text" name="Category" id="Category" list="Categories" />
+        <datalist name="Categories" id="Categories">
             <option selected hidden></option>
             <option value="Action/Adventure">Action/Adventure</option>
             <option value="Comedy">Comedy</option>
@@ -19,7 +20,7 @@
             <option value="Miscellaneous">Miscellaneous</option>
             <option value="Television">Television</option>
             <option value="VHS">VHS</option>
-        </select>
+        </datalist>
         <br /><br />
 
         <label for="Title">Title</label>

@@ -29,6 +29,19 @@ namespace Mission6.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult AddMovie(AddMovie Movie)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("AddMovie");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         public IActionResult MyPodcasts()
         {
             return View();
