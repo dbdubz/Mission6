@@ -21,9 +21,8 @@ namespace Mission6.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -53,13 +52,15 @@ namespace Mission6.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("addMovies");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Category = "Action/Adventure",
+                            CategoryID = 1,
                             Director = "Tony Scott",
                             Edited = false,
                             Rating = "PG",
@@ -69,7 +70,7 @@ namespace Mission6.Migrations
                         new
                         {
                             Id = 2,
-                            Category = "Comedy",
+                            CategoryID = 2,
                             Director = "David Mickey Evans",
                             Edited = false,
                             Rating = "PG",
@@ -79,7 +80,7 @@ namespace Mission6.Migrations
                         new
                         {
                             Id = 3,
-                            Category = "Television",
+                            CategoryID = 7,
                             Director = "Various",
                             Edited = false,
                             Rating = "PG",
@@ -89,7 +90,7 @@ namespace Mission6.Migrations
                         new
                         {
                             Id = 4,
-                            Category = "Comedy",
+                            CategoryID = 2,
                             Director = "Dennis Dugan",
                             Edited = false,
                             Rating = "PG-13",
@@ -99,13 +100,79 @@ namespace Mission6.Migrations
                         new
                         {
                             Id = 5,
-                            Category = "Action/Adventure",
+                            CategoryID = 1,
                             Director = "Sam Raimi",
                             Edited = false,
                             Rating = "PG-13",
                             Title = "Spider-Man",
                             Year = "2002"
                         });
+                });
+
+            modelBuilder.Entity("Mission6.Models.MovieCategories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("movieCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Action/Adventure"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Comedy"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Drama"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Family"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Miscellaneous"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Television"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "VHS"
+                        });
+                });
+
+            modelBuilder.Entity("Mission6.Models.AddMovie", b =>
+                {
+                    b.HasOne("Mission6.Models.MovieCategories", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

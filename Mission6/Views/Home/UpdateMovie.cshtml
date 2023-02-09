@@ -1,37 +1,22 @@
 ﻿@{
-    ViewData["Title"] = "Add Movie";
+    ViewData["Title"] = "Update Movie";
 }
-@model AddMovie 
+@model AddMovie
 
 <div class="text-center">
-    <h3>Add a Movie</h3>
+    <h3>Update a Movie</h3>
     <br />
 </div>
 <div>
-    <form name="add" id="add" asp-controller="Home" asp-action="AddMovie" method="post">
-        <label for="Category" asp-for="Category">Category</label>
-        <select name="Category" id="Category" asp-for="Category">
-            <option value="" hidden></option>
+    <form name="update" id="update" asp-controller="Home" asp-action="UpdateMovie" method="post">
+        <label for="Category" asp-for="CategoryID">Category</label>
+        <select name="CategoryID" id="CategoryID" asp-for="CategoryID">
             @foreach (MovieCategories cat in ViewBag.Categories)
             {
-                @if (Model != null)
-                {
-                    @if (cat.Id == Model.CategoryID)
-                    {
-                        <option value="@cat.Id" selected>@cat.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@cat.Id">@cat.Name</option>
-                    }
-                }
-                else
-                {
-                    <option value="@cat.Id">@cat.Name</option>
-                }
+                <option value="@cat.Id">@cat.Name</option>
             }
         </select>
-        <span asp-validation-for="Category" style="color: red;"></span>
+        <span asp-validation-for="CategoryID" style="color: red;"></span>
         <br /><br />
 
         <label for="Title" asp-for="Title">Title</label>

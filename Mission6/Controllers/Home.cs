@@ -22,12 +22,16 @@ namespace Mission6.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var movies = _moviesContext.addMovies.ToList();
+            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+            return View(movies);
         }
 
         [HttpGet]
         public IActionResult AddMovie()
         {
+            //var categories = _moviesContext.movieCategories.ToList();
+            ViewBag.Categories = _moviesContext.movieCategories.ToList();
             return View();
         }
 
@@ -44,6 +48,38 @@ namespace Mission6.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult UpdateMovie(int movieID)
+        {
+            var movie = _moviesContext.addMovies.Single(x => x.Id == movieID);
+            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+            
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateMovie(AddMovie Movie)
+        {
+            _moviesContext.Update(Movie);
+            _moviesContext.SaveChanges();
+
+            var movies = _moviesContext.addMovies.ToList();
+
+            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+
+            return View("Index", movies);
+        }
+
+        public IActionResult DeleteMovie(int movieID)
+        {
+            var movie = _moviesContext.addMovies.Single(x => x.Id == movieID);
+            
+            _moviesContext.Remove(movie);
+            _moviesContext.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult MyPodcasts()

@@ -12,14 +12,14 @@ namespace Mission6.Models
         [Required]
         public int Id { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Category is required")]
-        public string Category { get; set; }
-
         [Required(AllowEmptyStrings = false, ErrorMessage = "Title is required")]
         public string Title { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Year is required")]
         public string Year { get; set; }
+
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Category is required")]
+        //public string Category { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Director is required")]
         public string Director { get; set; }
@@ -33,5 +33,10 @@ namespace Mission6.Models
 
         [StringLength(25)]
         public string Notes { get; set; }
+
+        //Foreign Keys
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Category is required")]
+        public int CategoryID { get; set; }
+        public MovieCategories Category { get; set; }
     }
 }
