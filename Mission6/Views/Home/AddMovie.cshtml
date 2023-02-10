@@ -11,7 +11,7 @@
     <form name="add" id="add" asp-controller="Home" asp-action="AddMovie" method="post">
         <label for="CategoryID" asp-for="CategoryID">Category</label>
         <select name="CategoryID" id="CategoryID" asp-for="CategoryID">
-            <option hidden></option>
+            <option selected hidden></option>
             @foreach (MovieCategories cat in ViewBag.Categories)
             {
                 <option value="@cat.Id">@cat.Name</option>
