@@ -9,6 +9,7 @@
 </div>
 <div>
     <form name="update" id="update" asp-controller="Home" asp-action="UpdateMovie" method="post">
+        <input type="number" asp-for="Id" value="@Model.Id" hidden />
         <label for="Category" asp-for="CategoryID">Category</label>
         <select name="CategoryID" id="CategoryID" asp-for="CategoryID">
             @foreach (MovieCategories cat in ViewBag.Categories)

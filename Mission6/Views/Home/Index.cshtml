@@ -12,7 +12,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <td class="text-center">ID</td>
                     <td class="text-center">Category</td>
                     <td class="text-center">Title</td>
                     <td class="text-center">Year</td>
@@ -28,7 +27,6 @@
                 @foreach (var movie in Model)
                 {
                     <tr>
-                        <td>@movie.Id</td>
                         <td>@movie.Category.Name</td>
                         <td>@movie.Title</td>
                         <td>@movie.Year</td>

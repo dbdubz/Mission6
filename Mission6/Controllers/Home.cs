@@ -42,12 +42,8 @@ namespace Mission6.Controllers
             {
                 _moviesContext.Add(Movie);
                 _moviesContext.SaveChanges();
-                return RedirectToAction("AddMovie");
             }
-            else
-            {
-                return View();
-            }
+            return RedirectToAction("AddMovie");
         }
 
         [HttpGet]
@@ -65,11 +61,7 @@ namespace Mission6.Controllers
             _moviesContext.Update(Movie);
             _moviesContext.SaveChanges();
 
-            var movies = _moviesContext.addMovies.ToList();
-
-            ViewBag.Categories = _moviesContext.movieCategories.ToList();
-
-            return View("Index", movies);
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeleteMovie(int movieID)
