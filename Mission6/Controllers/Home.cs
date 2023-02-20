@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission6.Models;
 using System;
@@ -22,16 +23,14 @@ namespace Mission6.Controllers
 
         public IActionResult Index()
         {
-            var movies = _moviesContext.addMovies.ToList();
-            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+            var movies = _moviesContext.addMovies.Include("Category").OrderBy(m => m.Category).ToList();
             return View(movies);
         }
 
         [HttpGet]
         public IActionResult AddMovie()
         {
-            //var categories = _moviesContext.movieCategories.ToList();
-            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+            ViewBag.Categories = _moviesContext.movieCategories.OrderBy(c => c.Name).ToList();
             return View();
         }
 
@@ -49,8 +48,8 @@ namespace Mission6.Controllers
         [HttpGet]
         public IActionResult UpdateMovie(int movieID)
         {
-            var movie = _moviesContext.addMovies.Single(x => x.Id == movieID);
-            ViewBag.Categories = _moviesContext.movieCategories.ToList();
+            var movie = _moviesContext.addMovies.Single(m => m.Id == movieID);
+            ViewBag.Categories = _moviesContext.movieCategories.OrderBy(c => c.Name).ToList();
             
             return View(movie);
         }
