@@ -41,8 +41,13 @@ namespace Mission6.Controllers
             {
                 _moviesContext.Add(Movie);
                 _moviesContext.SaveChanges();
+                return RedirectToAction("AddMovie");
             }
-            return RedirectToAction("AddMovie");
+            else
+            {
+                ViewBag.Categories = _moviesContext.movieCategories.OrderBy(c => c.Name).ToList();
+                return View();
+            }
         }
 
         [HttpGet]
@@ -57,10 +62,18 @@ namespace Mission6.Controllers
         [HttpPost]
         public IActionResult UpdateMovie(AddMovie Movie)
         {
-            _moviesContext.Update(Movie);
-            _moviesContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _moviesContext.Update(Movie);
+                _moviesContext.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Categories = _moviesContext.movieCategories.OrderBy(c => c.Name).ToList();
+                return View(Movie);
+            }
         }
 
         public IActionResult DeleteMovie(int movieID)
